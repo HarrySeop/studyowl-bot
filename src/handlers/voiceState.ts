@@ -4,7 +4,6 @@ import {
   settings,
   startSession,
   endSession,
-  isUserActive,
 } from '../services/timeTracker';
 import { createEntryEmbed, createExitEmbed } from '../utils/embed';
 import { getEntryMessage, getExitMessage } from '../services/messages';

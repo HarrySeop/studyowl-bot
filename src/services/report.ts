@@ -3,7 +3,6 @@ import {
   getAllUsersTime,
   resetDailyData,
   settings,
-  registeredUsers,
 } from './timeTracker';
 import { createReportEmbed } from '../utils/embed';
 

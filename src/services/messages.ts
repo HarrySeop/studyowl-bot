@@ -49,7 +49,7 @@ const EXIT_MESSAGES_LONG = [
 export function getEntryMessage(timeOfDay: TimeOfDay): string {
   const messages = ENTRY_MESSAGES[timeOfDay];
   const randomIndex = Math.floor(Math.random() * messages.length);
-  return messages[randomIndex];
+  return messages[randomIndex] || '호호~ 환영해요!';
 }
 
 export function getExitMessage(duration: number): string {
@@ -65,5 +65,5 @@ export function getExitMessage(duration: number): string {
   }
 
   const randomIndex = Math.floor(Math.random() * messages.length);
-  return messages[randomIndex];
+  return messages[randomIndex] || '수고하셨어요!';
 }

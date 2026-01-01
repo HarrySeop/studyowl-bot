@@ -31,10 +31,11 @@ export function startSelfPing(): void {
   }
 
   const pingInterval = 3 * 60 * 1000;
+  const koyebUrl = config.koyebUrl;
 
   setInterval(async () => {
     try {
-      const response = await fetch(config.koyebUrl);
+      const response = await fetch(koyebUrl);
       if (response.ok) {
         console.log('Self Ping 성공');
       } else {

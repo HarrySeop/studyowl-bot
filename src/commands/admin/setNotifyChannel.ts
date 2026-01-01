@@ -1,7 +1,7 @@
 import {
   ChatInputCommandInteraction,
   EmbedBuilder,
-  PermissionFlagBits,
+  PermissionFlagsBits,
   ChannelType,
 } from 'discord.js';
 import { settings } from '../../services/timeTracker';
@@ -21,8 +21,8 @@ export async function handleSetNotifyChannel(
   const member = await interaction.guild.members.fetch(interaction.user.id);
 
   if (
-    !member.permissions.has(PermissionFlagBits.Administrator) &&
-    !member.permissions.has(PermissionFlagBits.ManageGuild)
+    !member.permissions.has(PermissionFlagsBits.Administrator) &&
+    !member.permissions.has(PermissionFlagsBits.ManageGuild)
   ) {
     await interaction.reply({
       content: '관리자 권한이 필요해요.',

@@ -3,7 +3,6 @@ import {
   isUserRegistered,
   getAllUsersTime,
   getUserSessions,
-  registeredUsers,
 } from '../../services/timeTracker';
 import { createAllTimeEmbed } from '../../utils/embed';
 

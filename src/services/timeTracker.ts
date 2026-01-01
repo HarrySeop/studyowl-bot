@@ -75,8 +75,10 @@ export function endSession(userId: string): number {
   const sessions = sessionHistory.get(userId);
   if (sessions && sessions.length > 0) {
     const lastSession = sessions[sessions.length - 1];
-    lastSession.end = endTime;
-    lastSession.duration = duration;
+    if (lastSession) {
+      lastSession.end = endTime;
+      lastSession.duration = duration;
+    }
   }
 
   return duration;
@@ -120,7 +122,6 @@ export function getAllUsersTime(): Map<string, number> {
 export function resetDailyData(): void {
   for (const userId of registeredUsers) {
     if (activeSessions.has(userId)) {
-      const startTime = activeSessions.get(userId)!;
       activeSessions.set(userId, new Date());
 
       const sessions = sessionHistory.get(userId) || [];
