@@ -1,5 +1,7 @@
 import { Client, GatewayIntentBits } from 'discord.js';
 import { config } from './config';
+import { handleVoiceStateUpdate } from './handlers/voiceState';
+import { handleInteractionCreate } from './handlers/interaction';
 
 const client = new Client({
   intents: [
@@ -14,6 +16,9 @@ client.once('ready', () => {
   console.log(`🦉 봇 이름: ${client.user?.tag}`);
   console.log(`📊 서버 수: ${client.guilds.cache.size}`);
 });
+
+client.on('voiceStateUpdate', handleVoiceStateUpdate);
+client.on('interactionCreate', handleInteractionCreate);
 
 client.login(config.discordToken).catch((error) => {
   console.error('❌ Discord 로그인 실패:', error);
