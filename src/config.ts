@@ -41,6 +41,11 @@ function validateEnv(): Config {
     port: parseInt(process.env.PORT || '8000', 10),
   };
 
+  console.log('환경변수 검증 완료');
+  console.log(`포트: ${config.port}`);
+  console.log(`Koyeb URL: ${config.koyebUrl || '설정되지 않음'}`);
+  console.log(`관리자 유저 수: ${config.adminUserIds.length}명`);
+
   return config;
 }
 
