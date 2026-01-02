@@ -13,6 +13,8 @@
 
 - pnpm-lock.yaml을 .gitignore에서 제외하여 Koyeb 빌드 실패 해결
   - 의존성 버전 고정을 위해 lock 파일을 git에 포함
+- tslib 모듈 누락으로 인한 런타임 에러(MODULE_NOT_FOUND) 수정
+  - package.json의 dependencies에 tslib 추가
 
 ---
 
@@ -38,6 +40,7 @@
 - ephemeral을 MessageFlags로 변경하여 deprecation warning 해결
 
 ---
+
 ## [1.0.0] - 2026-01-01
 
 ### 추가
