@@ -16,6 +16,11 @@ yarn.lock
 .claude/
 claude.md
 
+# Markdown files (작업용)
+*.md
+!README.md
+!CHANGELOG.md
+
 # IDE
 .vscode/
 .idea/
