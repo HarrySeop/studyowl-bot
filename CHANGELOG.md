@@ -38,7 +38,6 @@
 - ephemeral을 MessageFlags로 변경하여 deprecation warning 해결
 
 ---
-
 ## [1.0.0] - 2026-01-01
 
 ### 추가
