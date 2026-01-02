@@ -3,6 +3,7 @@ import {
   EmbedBuilder,
   PermissionFlagsBits,
   ChannelType,
+  MessageFlags,
 } from 'discord.js';
 import { settings } from '../../services/timeTracker';
 import { BRAND_COLORS, OWL_EMOJI } from '../../branding';
@@ -13,7 +14,7 @@ export async function handleSetNotifyChannel(
   if (!interaction.member || !interaction.guild) {
     await interaction.reply({
       content: '이 명령어는 서버에서만 사용할 수 있어요.',
-      ephemeral: true,
+      flags: MessageFlags.Ephemeral,
     });
     return;
   }
@@ -26,7 +27,7 @@ export async function handleSetNotifyChannel(
   ) {
     await interaction.reply({
       content: '관리자 권한이 필요해요.',
-      ephemeral: true,
+      flags: MessageFlags.Ephemeral,
     });
     return;
   }
@@ -36,7 +37,7 @@ export async function handleSetNotifyChannel(
   if (channel.type !== ChannelType.GuildText) {
     await interaction.reply({
       content: '텍스트 채널만 설정할 수 있어요.',
-      ephemeral: true,
+      flags: MessageFlags.Ephemeral,
     });
     return;
   }

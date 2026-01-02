@@ -1,4 +1,4 @@
-import { ChatInputCommandInteraction } from 'discord.js';
+import { ChatInputCommandInteraction, MessageFlags } from 'discord.js';
 import { handleUserRegister } from './admin/userRegister';
 import { handleUserUnregister } from './admin/userUnregister';
 import { handleUserList } from './admin/userList';
@@ -30,7 +30,7 @@ export async function handleCommand(
   if (!handler) {
     await interaction.reply({
       content: '알 수 없는 명령어예요.',
-      ephemeral: true,
+      flags: MessageFlags.Ephemeral,
     });
     return;
   }
@@ -43,12 +43,12 @@ export async function handleCommand(
     if (interaction.replied || interaction.deferred) {
       await interaction.followUp({
         content: '명령어 실행 중 오류가 발생했어요.',
-        ephemeral: true,
+        flags: MessageFlags.Ephemeral,
       });
     } else {
       await interaction.reply({
         content: '명령어 실행 중 오류가 발생했어요.',
-        ephemeral: true,
+        flags: MessageFlags.Ephemeral,
       });
     }
   }

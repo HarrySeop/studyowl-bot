@@ -1,4 +1,4 @@
-import { ChatInputCommandInteraction } from 'discord.js';
+import { ChatInputCommandInteraction, MessageFlags } from 'discord.js';
 import {
   isUserRegistered,
   getAllUsersTime,
@@ -14,7 +14,7 @@ export async function handleAllTime(
   if (!isUserRegistered(userId)) {
     await interaction.reply({
       content: '등록된 유저만 사용할 수 있어요.',
-      ephemeral: true,
+      flags: MessageFlags.Ephemeral,
     });
     return;
   }
@@ -26,10 +26,22 @@ export async function handleAllTime(
     try {
       const user = await interaction.client.users.fetch(uid);
       const sessions = getUserSessions(uid);
+
+      let displayName = user.username;
+      if (interaction.guild) {
+        try {
+          const member = await interaction.guild.members.fetch(uid);
+          displayName = member.displayName;
+        } catch {
+          displayName = user.username;
+        }
+      }
+
       users.push({
         user,
         time,
         sessionCount: sessions.length,
+        displayName,
       });
     } catch (error) {
       console.error(`Failed to fetch user ${uid}:`, error);

@@ -2,6 +2,7 @@ import {
   ChatInputCommandInteraction,
   EmbedBuilder,
   PermissionFlagsBits,
+  MessageFlags,
 } from 'discord.js';
 import { unregisterUser } from '../../services/timeTracker';
 import { BRAND_COLORS, OWL_EMOJI } from '../../branding';
@@ -12,7 +13,7 @@ export async function handleUserUnregister(
   if (!interaction.member || !interaction.guild) {
     await interaction.reply({
       content: '이 명령어는 서버에서만 사용할 수 있어요.',
-      ephemeral: true,
+      flags: MessageFlags.Ephemeral,
     });
     return;
   }
@@ -25,7 +26,7 @@ export async function handleUserUnregister(
   ) {
     await interaction.reply({
       content: '관리자 권한이 필요해요.',
-      ephemeral: true,
+      flags: MessageFlags.Ephemeral,
     });
     return;
   }
