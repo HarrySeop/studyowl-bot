@@ -2,6 +2,7 @@ export const BRAND_COLORS = {
   ENTRY: 0xf4a460, // 황금색 (입장)
   EXIT: 0x8b7355, // 갈색 (퇴장)
   REPORT: 0xff8c00, // 오렌지 (리포트)
+  TIME_QUERY: 0x5b9bd5, // 파란색 (학습시간 조회)
 } as const;
 
 export const BRAND_FOOTERS = {

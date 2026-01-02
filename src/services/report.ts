@@ -26,10 +26,23 @@ export async function sendDailyReport(client: Client): Promise<void> {
     const users = [];
     let totalTime = 0;
 
+    const guild = channel.guild;
+
     for (const [userId, time] of allTimes) {
       try {
         const user = await client.users.fetch(userId);
-        users.push({ user, time });
+
+        let displayName = user.username;
+        if (guild) {
+          try {
+            const member = await guild.members.fetch(userId);
+            displayName = member.displayName;
+          } catch {
+            displayName = user.username;
+          }
+        }
+
+        users.push({ user, time, displayName });
         totalTime += time;
       } catch (error) {
         console.error(`Failed to fetch user ${userId}:`, error);
