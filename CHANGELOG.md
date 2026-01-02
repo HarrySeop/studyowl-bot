@@ -9,6 +9,25 @@
 
 ## [Unreleased]
 
+### 추가
+
+- 학습시간 조회용 브랜드 색상 추가 (TIME_QUERY: 파란색)
+
+### 변경
+
+- Embed 여백 개선으로 가독성 향상
+  - Title 아래 여백 추가
+  - 필드 사이에 빈 필드 삽입으로 시각적 구분 강화
+  - 세션 목록 항목 간 여백 추가
+- 서버 별명(닉네임)으로 유저 표시
+  - username 대신 GuildMember.displayName 사용
+- 작업용 md 파일 .gitignore에 추가
+
+### 수정
+
+- ready 이벤트를 clientReady로 변경하여 Discord.js v15 deprecation warning 해결
+- ephemeral을 MessageFlags로 변경하여 deprecation warning 해결
+
 ---
 
 ## [1.0.0] - 2026-01-01
