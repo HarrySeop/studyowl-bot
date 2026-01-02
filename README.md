@@ -152,7 +152,7 @@
 - **프레임워크**: Discord.js v14
 - **런타임**: Node.js 18
 - **스케줄러**: node-cron
-- **서버**: Express (Health Check)
+- **서버**: Native HTTP (Health Check)
 - **배포**: Koyeb (Docker)
 
 ---
