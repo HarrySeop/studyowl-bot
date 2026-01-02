@@ -14,7 +14,7 @@ const client = new Client({
   ],
 });
 
-client.once('ready', () => {
+client.once('clientReady', () => {
   console.log(`✅ StudyOwl 봇이 로그인했습니다!`);
   console.log(`🦉 봇 이름: ${client.user?.tag}`);
   console.log(`📊 서버 수: ${client.guilds.cache.size}`);
