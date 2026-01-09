@@ -52,7 +52,7 @@ export function formatDayOfWeek(date: Date): string {
   const kst = getKSTDate(date);
   const dayOfWeek = kst.getUTCDay();
   const days = ['일', '월', '화', '수', '목', '금', '토'];
-  return days[dayOfWeek];
+  return days[dayOfWeek]!;
 }
 
 export function formatDateRange(date: Date = new Date()): string {
