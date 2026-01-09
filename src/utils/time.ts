@@ -68,6 +68,15 @@ export function formatDateRange(date: Date = new Date()): string {
   return `(${month}월 ${day}일 09:00 ~ ${nextMonth}월 ${nextDayNum}일 08:59 기준)`;
 }
 
+export function formatDateWithDay(date: Date = new Date()): string {
+  const baseDay = getDayBasedOnNineAM(date);
+  const month = baseDay.getUTCMonth() + 1;
+  const day = baseDay.getUTCDate();
+  const dayOfWeek = formatDayOfWeek(baseDay);
+
+  return `${month}월 ${day}일 (${dayOfWeek})`;
+}
+
 export type TimeOfDay = '아침' | '오전' | '오후' | '저녁' | '밤';
 
 export function getTimeOfDay(date: Date = new Date()): TimeOfDay {
