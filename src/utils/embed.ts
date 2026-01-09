@@ -3,7 +3,6 @@ import { BRAND_COLORS, BRAND_FOOTERS, OWL_EMOJI } from '../branding';
 import {
   formatDuration,
   formatTime,
-  formatDate,
   formatDateWithDay,
   formatDateRange,
 } from './time';
