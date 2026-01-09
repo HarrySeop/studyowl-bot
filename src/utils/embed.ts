@@ -137,8 +137,8 @@ interface UserTime {
 export function createAllTimeEmbed(users: UserTime[]): EmbedBuilder {
   const embed = new EmbedBuilder()
     .setColor(BRAND_COLORS.TIME_QUERY)
-    .setTitle(`${OWL_EMOJI}⏱️ 전체 학습 시간`)
-    .setDescription(`\n📅 ${formatDate(new Date())} 기준\n`)
+    .setTitle(`${OWL_EMOJI}⏱️ ${formatDateWithDay()} 전체 학습 시간`)
+    .setDescription(`${formatDateRange()}\n`)
     .setFooter({ text: BRAND_FOOTERS.ALL_TIME })
     .setTimestamp();
 
