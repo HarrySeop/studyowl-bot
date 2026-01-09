@@ -82,8 +82,8 @@ interface Session {
 export function createMyTimeEmbed(displayName: string, sessions: Session[], total: number): EmbedBuilder {
   const embed = new EmbedBuilder()
     .setColor(BRAND_COLORS.TIME_QUERY)
-    .setTitle(`${OWL_EMOJI}⏱️ ${displayName}님의 학습 기록`)
-    .setDescription(`\n📅 ${formatDate(new Date())}\n`)
+    .setTitle(`${OWL_EMOJI}⏱️ ${displayName}님의 ${formatDateWithDay()} 학습 기록`)
+    .setDescription(`${formatDateRange()}\n`)
     .setFooter({ text: BRAND_FOOTERS.MY_TIME })
     .setTimestamp();
 
