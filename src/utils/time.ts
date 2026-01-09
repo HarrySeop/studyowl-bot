@@ -4,6 +4,20 @@ export function getKSTDate(date: Date = new Date()): Date {
   return new Date(utc + kstOffset);
 }
 
+export function getDayBasedOnNineAM(date: Date = new Date()): Date {
+  const kst = getKSTDate(date);
+  const hour = kst.getUTCHours();
+
+  // 09:00 이전이면 전날 날짜 반환
+  if (hour < 9) {
+    const yesterday = new Date(kst);
+    yesterday.setUTCDate(yesterday.getUTCDate() - 1);
+    return yesterday;
+  }
+
+  return kst;
+}
+
 export function formatDuration(seconds: number): string {
   const hours = Math.floor(seconds / 3600);
   const minutes = Math.floor((seconds % 3600) / 60);
@@ -32,6 +46,35 @@ export function formatDate(date: Date): string {
   const month = kst.getUTCMonth() + 1;
   const day = kst.getUTCDate();
   return `${year}년 ${month}월 ${day}일`;
+}
+
+export function formatDayOfWeek(date: Date): string {
+  const kst = getKSTDate(date);
+  const dayOfWeek = kst.getUTCDay();
+  const days = ['일', '월', '화', '수', '목', '금', '토'];
+  return days[dayOfWeek];
+}
+
+export function formatDateRange(date: Date = new Date()): string {
+  const baseDay = getDayBasedOnNineAM(date);
+  const month = baseDay.getUTCMonth() + 1;
+  const day = baseDay.getUTCDate();
+
+  const nextDay = new Date(baseDay);
+  nextDay.setUTCDate(nextDay.getUTCDate() + 1);
+  const nextMonth = nextDay.getUTCMonth() + 1;
+  const nextDayNum = nextDay.getUTCDate();
+
+  return `(${month}월 ${day}일 09:00 ~ ${nextMonth}월 ${nextDayNum}일 08:59 기준)`;
+}
+
+export function formatDateWithDay(date: Date = new Date()): string {
+  const baseDay = getDayBasedOnNineAM(date);
+  const month = baseDay.getUTCMonth() + 1;
+  const day = baseDay.getUTCDate();
+  const dayOfWeek = formatDayOfWeek(baseDay);
+
+  return `${month}월 ${day}일 (${dayOfWeek})`;
 }
 
 export type TimeOfDay = '아침' | '오전' | '오후' | '저녁' | '밤';

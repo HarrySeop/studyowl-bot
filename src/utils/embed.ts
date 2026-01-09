@@ -1,6 +1,12 @@
 import { EmbedBuilder, User, VoiceChannel } from 'discord.js';
 import { BRAND_COLORS, BRAND_FOOTERS, OWL_EMOJI } from '../branding';
-import { formatDuration, formatTime, formatDate } from './time';
+import {
+  formatDuration,
+  formatTime,
+  formatDate,
+  formatDateWithDay,
+  formatDateRange,
+} from './time';
 
 export function createEntryEmbed(user: User, channel: VoiceChannel, message: string): EmbedBuilder {
   return new EmbedBuilder()
@@ -32,8 +38,8 @@ interface ReportData {
 export function createReportEmbed(data: ReportData): EmbedBuilder {
   const embed = new EmbedBuilder()
     .setColor(BRAND_COLORS.REPORT)
-    .setTitle(`${OWL_EMOJI}📊 오늘의 학습 기록`)
-    .setDescription('\n지혜로운 하루를 보내셨네요!\n')
+    .setTitle(`${OWL_EMOJI}📊 ${formatDateWithDay()}의 학습 기록`)
+    .setDescription(`${formatDateRange()}\n\n지혜로운 하루를 보내셨네요!\n`)
     .setFooter({ text: BRAND_FOOTERS.REPORT })
     .setTimestamp();
 
@@ -76,8 +82,8 @@ interface Session {
 export function createMyTimeEmbed(displayName: string, sessions: Session[], total: number): EmbedBuilder {
   const embed = new EmbedBuilder()
     .setColor(BRAND_COLORS.TIME_QUERY)
-    .setTitle(`${OWL_EMOJI}⏱️ ${displayName}님의 학습 기록`)
-    .setDescription(`\n📅 ${formatDate(new Date())}\n`)
+    .setTitle(`${OWL_EMOJI}⏱️ ${displayName}님의 ${formatDateWithDay()} 학습 기록`)
+    .setDescription(`${formatDateRange()}\n`)
     .setFooter({ text: BRAND_FOOTERS.MY_TIME })
     .setTimestamp();
 
@@ -131,8 +137,8 @@ interface UserTime {
 export function createAllTimeEmbed(users: UserTime[]): EmbedBuilder {
   const embed = new EmbedBuilder()
     .setColor(BRAND_COLORS.TIME_QUERY)
-    .setTitle(`${OWL_EMOJI}⏱️ 전체 학습 시간`)
-    .setDescription(`\n📅 ${formatDate(new Date())} 기준\n`)
+    .setTitle(`${OWL_EMOJI}⏱️ ${formatDateWithDay()} 전체 학습 시간`)
+    .setDescription(`${formatDateRange()}\n`)
     .setFooter({ text: BRAND_FOOTERS.ALL_TIME })
     .setTimestamp();
 
