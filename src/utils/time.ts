@@ -48,6 +48,13 @@ export function formatDate(date: Date): string {
   return `${year}년 ${month}월 ${day}일`;
 }
 
+export function formatDayOfWeek(date: Date): string {
+  const kst = getKSTDate(date);
+  const dayOfWeek = kst.getUTCDay();
+  const days = ['일', '월', '화', '수', '목', '금', '토'];
+  return days[dayOfWeek];
+}
+
 export type TimeOfDay = '아침' | '오전' | '오후' | '저녁' | '밤';
 
 export function getTimeOfDay(date: Date = new Date()): TimeOfDay {
