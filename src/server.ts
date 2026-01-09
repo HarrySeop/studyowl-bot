@@ -25,8 +25,15 @@ export function startHealthCheckServer(): http.Server {
 }
 
 export function startSelfPing(): void {
+  if (!config.koyebUrl) {
+    console.log(
+      'KOYEB_URL이 설정되지 않아 Self Ping을 시작하지 않습니다.'
+    );
+    return;
+  }
+
   const pingInterval = 3 * 60 * 1000;
-  const healthUrl = `http://localhost:${config.port}/health`;
+  const healthUrl = config.koyebUrl;
 
   const ping = async () => {
     try {
@@ -49,5 +56,6 @@ export function startSelfPing(): void {
   // 이후 3분마다 실행
   setInterval(ping, pingInterval);
 
-  console.log('Self Ping이 시작되었습니다. (3분마다 실행)');
+  console.log(`Self Ping이 시작되었습니다. (3분마다 실행)`);
+  console.log(`Target URL: ${healthUrl}`);
 }
