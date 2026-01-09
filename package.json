@@ -1,6 +1,6 @@
 {
   "name": "studyowl-bot",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Discord study time tracker bot with owl personality",
   "main": "dist/index.js",
   "scripts": {
