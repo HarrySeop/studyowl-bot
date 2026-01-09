@@ -4,6 +4,20 @@ export function getKSTDate(date: Date = new Date()): Date {
   return new Date(utc + kstOffset);
 }
 
+export function getDayBasedOnNineAM(date: Date = new Date()): Date {
+  const kst = getKSTDate(date);
+  const hour = kst.getUTCHours();
+
+  // 09:00 이전이면 전날 날짜 반환
+  if (hour < 9) {
+    const yesterday = new Date(kst);
+    yesterday.setUTCDate(yesterday.getUTCDate() - 1);
+    return yesterday;
+  }
+
+  return kst;
+}
+
 export function formatDuration(seconds: number): string {
   const hours = Math.floor(seconds / 3600);
   const minutes = Math.floor((seconds % 3600) / 60);
