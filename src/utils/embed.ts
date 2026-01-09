@@ -1,6 +1,12 @@
 import { EmbedBuilder, User, VoiceChannel } from 'discord.js';
 import { BRAND_COLORS, BRAND_FOOTERS, OWL_EMOJI } from '../branding';
-import { formatDuration, formatTime, formatDate } from './time';
+import {
+  formatDuration,
+  formatTime,
+  formatDate,
+  formatDateWithDay,
+  formatDateRange,
+} from './time';
 
 export function createEntryEmbed(user: User, channel: VoiceChannel, message: string): EmbedBuilder {
   return new EmbedBuilder()
@@ -32,8 +38,8 @@ interface ReportData {
 export function createReportEmbed(data: ReportData): EmbedBuilder {
   const embed = new EmbedBuilder()
     .setColor(BRAND_COLORS.REPORT)
-    .setTitle(`${OWL_EMOJI}📊 오늘의 학습 기록`)
-    .setDescription('\n지혜로운 하루를 보내셨네요!\n')
+    .setTitle(`${OWL_EMOJI}📊 ${formatDateWithDay()}의 학습 기록`)
+    .setDescription(`${formatDateRange()}\n\n지혜로운 하루를 보내셨네요!\n`)
     .setFooter({ text: BRAND_FOOTERS.REPORT })
     .setTimestamp();
 
