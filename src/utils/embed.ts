@@ -34,11 +34,11 @@ interface ReportData {
   totalTime: number;
 }
 
-export function createReportEmbed(data: ReportData): EmbedBuilder {
+export function createReportEmbed(data: ReportData, reportDate?: Date): EmbedBuilder {
   const embed = new EmbedBuilder()
     .setColor(BRAND_COLORS.REPORT)
-    .setTitle(`${OWL_EMOJI}📊 ${formatDateWithDay()}의 학습 기록`)
-    .setDescription(`${formatDateRange()}\n\n지혜로운 하루를 보내셨네요!\n`)
+    .setTitle(`${OWL_EMOJI}📊 ${formatDateWithDay(reportDate)}의 학습 기록`)
+    .setDescription(`${formatDateRange(reportDate)}\n\n지혜로운 하루를 보내셨네요!\n`)
     .setFooter({ text: BRAND_FOOTERS.REPORT })
     .setTimestamp();
 

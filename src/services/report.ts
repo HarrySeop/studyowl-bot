@@ -51,10 +51,15 @@ export async function sendDailyReport(client: Client): Promise<void> {
 
     users.sort((a, b) => b.time - a.time);
 
+    // 전날 날짜 계산 (리포트는 전날의 학습 기록을 보고함)
+    const now = new Date();
+    const yesterday = new Date(now);
+    yesterday.setDate(yesterday.getDate() - 1);
+
     const embed = createReportEmbed({
       users,
       totalTime,
-    });
+    }, yesterday);
 
     await channel.send({ embeds: [embed] });
 
